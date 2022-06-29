@@ -11,7 +11,7 @@ from . import (
 from .. import version, _tl
 from ..types import _custom
 from .._events.base import EventBuilder
-from .._misc import enums
+from .._misc import enums, hints
 
 
 def forward_call(to_func):
