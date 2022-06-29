@@ -193,6 +193,8 @@ class _ParticipantsIter(requestiter.RequestIter):
 
         participants = await self.client(self.request)
         self.total = participants.count
+        print("total count participants: ", self.total)
+        print("total count participants: ", self.request.offset)
 
         self.request = dataclasses.replace(self.request, offset=self.request.offset + len(participants.participants))
         users = {user.id: user for user in participants.users}
