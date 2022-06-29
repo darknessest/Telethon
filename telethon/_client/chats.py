@@ -205,7 +205,7 @@ class _ParticipantsIter(requestiter.RequestIter):
             else:
                 user_id = participant.user_id
 
-            if isinstance(participant, types.ChannelParticipantLeft):
+            if isinstance(participant, _tl.ChannelParticipantLeft):
                 # These participants should be ignored. See #3231.
                 continue
 
