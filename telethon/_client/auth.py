@@ -141,7 +141,7 @@ async def _start(
                 me = await self.sign_up(value, first_name, last_name)
             else:
                 # Raises SessionPasswordNeededError if 2FA enabled
-                me = await self.sign_in(phone, code=value)
+                me = await self.sign_in(code=value)
             break
         except errors.SessionPasswordNeededError:
             two_step_detected = True
@@ -177,7 +177,7 @@ async def _start(
                     if inspect.isawaitable(value):
                         value = await value
 
-                    me = await self.sign_in(phone=phone, password=value)
+                    me = await self.sign_in(password=value)
                     break
                 except errors.PasswordHashInvalidError:
                     print('Invalid password. Please try again',
@@ -185,7 +185,7 @@ async def _start(
             else:
                 raise errors.PasswordHashInvalidError(request=None)
         else:
-            me = await self.sign_in(phone=phone, password=password)
+            me = await self.sign_in(password=password)
 
     # We won't reach here if any step failed (exit by exception)
     signed, name = 'Signed in successfully as', utils.get_display_name(me)
