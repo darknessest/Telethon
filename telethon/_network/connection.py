@@ -36,7 +36,8 @@ class Connection:
         self._sock = sock
 
     async def disconnect(self):
-        self._sock.close()
+        if self._sock:
+            self._sock.close()
         self._sock = None
 
     async def send(self, data):
