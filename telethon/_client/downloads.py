@@ -268,6 +268,7 @@ async def download_media(
     # to be obtained mid-download. Store (input chat, message id) so that the message
     # can be re-fetched.
     msg_data = None
+    thumb = None
 
     # TODO This won't work for messageService
     message = media
@@ -290,11 +291,11 @@ async def download_media(
 
     if isinstance(media, (_tl.MessageMediaPhoto, _tl.Photo)):
         return await _download_photo(
-            self, media, file, date, size, progress_callback
+            self, media, file, date, thumb, progress_callback
         )
     elif isinstance(media, (_tl.MessageMediaDocument, _tl.Document)):
         return await _download_document(
-            self, media, file, date, size, progress_callback, msg_data
+            self, media, file, date, thumb, progress_callback, msg_data
         )
     elif isinstance(media, _tl.MessageMediaContact):
         return _download_contact(
