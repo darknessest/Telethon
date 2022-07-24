@@ -274,7 +274,7 @@ async def download_media(
     if isinstance(message, _tl.Message):
         date = message.date
         media = message.media
-        msg_data = (message.input_chat, message.id) if message.input_chat else None
+        msg_data = (message.peer_id, message.id) if message.peer_id else None
     else:
         date = datetime.datetime.now()
         media = message
@@ -290,11 +290,11 @@ async def download_media(
 
     if isinstance(media, (_tl.MessageMediaPhoto, _tl.Photo)):
         return await _download_photo(
-            self, media, file, date, thumb, progress_callback
+            self, media, file, date, size, progress_callback
         )
     elif isinstance(media, (_tl.MessageMediaDocument, _tl.Document)):
         return await _download_document(
-            self, media, file, date, thumb, progress_callback, msg_data
+            self, media, file, date, size, progress_callback, msg_data
         )
     elif isinstance(media, _tl.MessageMediaContact):
         return _download_contact(
