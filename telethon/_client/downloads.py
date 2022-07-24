@@ -268,7 +268,6 @@ async def download_media(
     # to be obtained mid-download. Store (input chat, message id) so that the message
     # can be re-fetched.
     msg_data = None
-    thumb = None
 
     # TODO This won't work for messageService
     message = media
