@@ -67,7 +67,7 @@ class _DirectDownloadIter(requestiter.RequestIter):
             else:
                 return result.bytes
 
-        except errors.TimeoutError as e:
+        except errors.TimedOutError as e:
             if self._timed_out:
                 self.client._log[__name__].warning('Got two timeouts in a row while downloading file')
                 raise
@@ -77,7 +77,7 @@ class _DirectDownloadIter(requestiter.RequestIter):
             await asyncio.sleep(TIMED_OUT_SLEEP)
             return await self._request()
 
-        except errors.FileMigrateError as e:
+        except errors._rpcbase.InvalidDcError as e:
             self.client._log[__name__].info('File lives in another DC')
             self._sender = await self.client._borrow_exported_sender(e.new_dc)
             self._exported = True
