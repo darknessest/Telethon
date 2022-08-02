@@ -965,7 +965,7 @@ def get_peer_id(peer):
     """
     Extract the integer ID from the given :tl:`Peer`.
     """
-    pid = getattr(peer, 'user_id', None) or getattr(peer, 'channel_id', None) or getattr(peer, 'chat_id', None) or getattr(peer, 'peer_id', None)
+    pid = getattr(peer, 'user_id', None) or getattr(peer, 'channel_id', None) or getattr(peer, 'chat_id', None) or getattr(peer, 'id', None)
     if not isinstance(pid, int):
         _raise_cast_fail(peer, 'int')
 
