@@ -430,8 +430,8 @@ class Message(ChatGetter, SenderGetter):
 
         self = cls.__new__(cls)
         self._client = client
-        self._sender = entities.get(_tl.PeerUser(update.user_id))
-        self._chat = entities.get(_tl.PeerUser(update.user_id))
+        # self._sender = entities.get(_tl.PeerUser(update.user_id))
+        # self._chat = entities.get(_tl.PeerUser(update.user_id))
         self._message = message
 
         # Convenient storage for custom functions
